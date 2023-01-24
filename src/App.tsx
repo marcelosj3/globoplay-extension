@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import { Button } from "./components/button/button";
+import { ToggleButton } from "./components/toggle-button/toggle-button";
 import { DOMMessage, DOMMessageResponse } from "./types";
 
 function App() {
@@ -74,36 +76,30 @@ function App() {
 
   return (
     <div className="App">
-      {isGloboplayUrl ? (
+      {!isGloboplayUrl ? (
         <>
-          <input
-            type="checkbox"
-            id="header"
-            name="header"
+          <ToggleButton
             onChange={handleOnChangeHeaderMenu}
             checked={showHeaderMenu}
-          />
-          <label htmlFor="header">Header</label>
+          >
+            Header
+          </ToggleButton>
 
-          <input
-            type="checkbox"
-            id="overlay"
-            name="overlay"
+          <ToggleButton
             onChange={handleOnChangeMediaControlOverlay}
             checked={showMediaControlOverlay}
-          />
-          <label htmlFor="overlay">Overlay</label>
+          >
+            Overlay
+          </ToggleButton>
 
-          <input
-            type="checkbox"
-            id="allElements"
-            name="allElements"
+          <ToggleButton
             onChange={handleOnChangeAllElements}
             checked={showAllElements}
-          />
-          <label htmlFor="allElements">Toggle all elements</label>
+          >
+            Toggle all elements
+          </ToggleButton>
 
-          <button onClick={handleVideoFullscreen}>Fullscreen</button>
+          <Button onClick={handleVideoFullscreen}>Fullscreen</Button>
         </>
       ) : (
         <h1>NOPE</h1>
