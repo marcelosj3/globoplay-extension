@@ -1,4 +1,3 @@
 export type ElementInfo = {
-  showElement: boolean;
-  display: string;
+  showElement: boolean | undefined;
 };

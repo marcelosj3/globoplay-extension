@@ -3,8 +3,18 @@ import { DOMMessage, DOMMessageResponse } from "./types";
 
 function App() {
   const [isGloboplayUrl, setIsGloboplayUrl] = useState<boolean>(false);
+  const [showHeaderMenu, setShowHeaderMenu] = useState<boolean>(true);
+  const [showMediaControlOverlay, setShowMediaControlOverlay] =
+    useState<boolean>(true);
+  const [showAllElements, setShowAllElements] = useState<boolean>(true);
 
   useEffect(() => {
+    if (
+      showHeaderMenu !== showAllElements &&
+      showMediaControlOverlay !== showAllElements
+    )
+      setShowAllElements((showElements) => !showElements);
+
     /**
      * We can't use "chrome.runtime.sendMessage" for sending messages from React.
      * For sending messages from React we need to specify which tab to send it to.
@@ -16,17 +26,16 @@ function App() {
           currentWindow: true,
         },
         (tabs) => {
-          /**
-           * Sends a single message to the content script(s) in the specified tab,
-           * with an optional callback to run when a response is sent back.
-           *
-           * The runtime.onMessage event is fired in each content script running
-           * in the specified tab for the current extension.
-           */
           chrome.tabs.sendMessage(
             tabs[0].id || 0,
             {
               type: "GET_DOM",
+              headerMenuInfo: {
+                showElement: showHeaderMenu,
+              },
+              mediaControlOverlayInfo: {
+                showElement: showMediaControlOverlay,
+              },
             } as DOMMessage,
             (response: DOMMessageResponse) => {
               setIsGloboplayUrl(response.isGloboplayUrl);
@@ -34,16 +43,21 @@ function App() {
           );
         }
       );
+  }, [showHeaderMenu, showMediaControlOverlay, showAllElements]);
+
+  const handleOnChangeHeaderMenu = useCallback(() => {
+    setShowHeaderMenu((showElement) => !showElement);
   }, []);
 
-  const handleOnChangeHeaderMenu = useCallback(() => {}, []);
+  const handleOnChangeMediaControlOverlay = useCallback(() => {
+    setShowMediaControlOverlay((showElement) => !showElement);
+  }, []);
 
-  // const handleOnChangeMediaControlOverlay = useCallback(() => {
-  //   setMediaControlOverlayInfo(({ display, showElement }) => ({
-  //     display,
-  //     showElement: !showElement,
-  //   }));
-  // }, []);
+  const handleOnChangeAllElements = useCallback(() => {
+    setShowHeaderMenu(!showAllElements);
+    setShowMediaControlOverlay(!showAllElements);
+    setShowAllElements((showElements) => !showElements);
+  }, [showAllElements]);
 
   return (
     <div className="App">
@@ -54,18 +68,27 @@ function App() {
             id="header"
             name="header"
             onChange={handleOnChangeHeaderMenu}
-            // checked={headerMenuInfo.showElement}
+            checked={showHeaderMenu}
           />
           <label htmlFor="header">Header</label>
 
-          {/* <input
+          <input
             type="checkbox"
             id="overlay"
             name="overlay"
             onChange={handleOnChangeMediaControlOverlay}
-            checked={mediaControlOverlayInfo.showElement}
+            checked={showMediaControlOverlay}
           />
-          <label htmlFor="overlay">Overlay</label> */}
+          <label htmlFor="overlay">Overlay</label>
+
+          <input
+            type="checkbox"
+            id="allElements"
+            name="allElements"
+            onChange={handleOnChangeAllElements}
+            checked={showAllElements}
+          />
+          <label htmlFor="allElements">Toggle all elements</label>
         </>
       ) : (
         <h1>NOPE</h1>
