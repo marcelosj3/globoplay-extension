@@ -3,10 +3,11 @@ import { DOMMessage, DOMMessageResponse } from "./types";
 
 function App() {
   const [isGloboplayUrl, setIsGloboplayUrl] = useState<boolean>(false);
-  const [showHeaderMenu, setShowHeaderMenu] = useState<boolean>(true);
+  const [showHeaderMenu, setShowHeaderMenu] = useState<boolean>(false);
   const [showMediaControlOverlay, setShowMediaControlOverlay] =
-    useState<boolean>(true);
-  const [showAllElements, setShowAllElements] = useState<boolean>(true);
+    useState<boolean>(false);
+  const [showAllElements, setShowAllElements] = useState<boolean>(false);
+  const [isVideoFullscreen, setIsVideoFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
     if (
@@ -36,14 +37,21 @@ function App() {
               mediaControlOverlayInfo: {
                 showElement: showMediaControlOverlay,
               },
+              videoInfo: { isFullscreen: isVideoFullscreen },
             } as DOMMessage,
             (response: DOMMessageResponse) => {
               setIsGloboplayUrl(response.isGloboplayUrl);
+              setIsVideoFullscreen(response.video.isFullscreen);
             }
           );
         }
       );
-  }, [showHeaderMenu, showMediaControlOverlay, showAllElements]);
+  }, [
+    showHeaderMenu,
+    showMediaControlOverlay,
+    showAllElements,
+    isVideoFullscreen,
+  ]);
 
   const handleOnChangeHeaderMenu = useCallback(() => {
     setShowHeaderMenu((showElement) => !showElement);
@@ -58,6 +66,11 @@ function App() {
     setShowMediaControlOverlay(!showAllElements);
     setShowAllElements((showElements) => !showElements);
   }, [showAllElements]);
+
+  const handleVideoFullscreen = useCallback(() => {
+    setIsVideoFullscreen(true);
+    window.close();
+  }, []);
 
   return (
     <div className="App">
@@ -89,6 +102,8 @@ function App() {
             checked={showAllElements}
           />
           <label htmlFor="allElements">Toggle all elements</label>
+
+          <button onClick={handleVideoFullscreen}>Fullscreen</button>
         </>
       ) : (
         <h1>NOPE</h1>

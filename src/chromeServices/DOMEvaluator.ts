@@ -1,5 +1,6 @@
 import { DOMMessage, DOMMessageResponse } from "../types";
 import { ElementInfo } from "../types/element-info.type";
+import { VideoInfo } from "../types/video-info.type";
 
 const toggleElement = (
   element: HTMLElement | null,
@@ -8,6 +9,15 @@ const toggleElement = (
   if (!element) return;
 
   element.style.display = showElement ? "flex" : "none";
+};
+
+const toggleFullScreen = (
+  element: HTMLElement | null,
+  { isFullscreen }: VideoInfo
+) => {
+  if (!element) return;
+
+  if (isFullscreen) element.requestFullscreen();
 };
 
 // Function called when a new message is received
@@ -19,7 +29,7 @@ const messagesFromReactAppListener = (
   console.log("[content.js]. Message received", msg);
 
   // Fetches information from react
-  const { headerMenuInfo, mediaControlOverlayInfo } = msg;
+  const { headerMenuInfo, mediaControlOverlayInfo, videoInfo } = msg;
 
   // Checks if it is the right url
   const isGloboplayUrl = document.URL.toLowerCase().includes("globoplay");
@@ -30,10 +40,13 @@ const messagesFromReactAppListener = (
   const mediaControlOverlay =
     document.querySelector<HTMLElement>(".media-control");
   toggleElement(mediaControlOverlay, mediaControlOverlayInfo);
-
+  const video = document.querySelector<HTMLElement>("video");
+  toggleFullScreen(video, videoInfo);
   // Prepare the response object with information about the site
   const response: DOMMessageResponse = {
     isGloboplayUrl,
+    // eslint-disable-next-line no-restricted-globals
+    video: { isFullscreen: window.outerHeight === screen.height },
   };
 
   sendResponse(response);
