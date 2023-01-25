@@ -14,7 +14,7 @@ export const ToggleButton = ({
   const labelId = children.toLowerCase().split(" ").join("-");
 
   return (
-    <div className="toggle-button">
+    <div className="toggle-button" data-disabled={disabled}>
       <label htmlFor={labelId}>
         <input
           type="checkbox"

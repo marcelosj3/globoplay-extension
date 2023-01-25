@@ -5,9 +5,8 @@
 
 .toggle-button > label {
   display: flex;
-  gap: 8px;
-
   align-items: center;
+  gap: 8px;
 
   cursor: pointer;
 }
@@ -80,9 +79,12 @@
 
 /* DISABLED */
 
+.toggle-button[data-disabled="true"] > label {
+  cursor: auto;
+}
+
 .toggle-button > label > input:disabled ~ .toggle-button-styled {
   background-color: var(--color-secondary-2);
-  cursor: auto;
 }
 
 .toggle-button > label > input:disabled ~ .toggle-button-styled > .background {
@@ -100,5 +102,4 @@
 
 .toggle-button > label > input:disabled ~ p {
   color: var(--color-secondary-2);
-  cursor: auto;
 }

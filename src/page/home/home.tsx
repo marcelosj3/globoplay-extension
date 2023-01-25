@@ -7,16 +7,21 @@ import { ExtensionContent } from "../extension-content/extension-content";
 import "./home.style.css";
 
 export const Home = () => {
+  // Globoplay URL
   const [isGloboplayUrl, setIsGloboplayUrl] = useState<boolean>(false);
+  // Header Menu
   const [showHeaderMenu, setShowHeaderMenu] = useState<boolean>(false);
+  const [hasHeaderMenu, setHasHeaderMenu] = useState<boolean>(false);
+  // MediaControlOverlay
   const [showMediaControlOverlay, setShowMediaControlOverlay] =
     useState<boolean>(false);
-  const [showAllElements, setShowAllElements] = useState<boolean>(false);
-  const [isVideoFullscreen, setIsVideoFullscreen] = useState<boolean>(false);
-  const [hasHeaderMenu, setHasHeaderMenu] = useState<boolean>(false);
   const [hasMediaControlOverlay, setHasMediaControlOverlay] =
     useState<boolean>(false);
+  // Video
+  const [isVideoFullscreen, setIsVideoFullscreen] = useState<boolean>(false);
   const [hasVideo, setHasVideo] = useState<boolean>(false);
+  // Misc
+  const [showAllElements, setShowAllElements] = useState<boolean>(false);
 
   useEffect(() => {
     /**
