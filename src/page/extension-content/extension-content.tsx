@@ -37,13 +37,16 @@ export const ExtensionContent = ({
   }, [setShowMediaControlOverlay]);
 
   const handleOnChangeAllElements = useCallback(() => {
-    setShowHeaderMenu(!showAllElements);
-    setShowMediaControlOverlay(!showAllElements);
-    setShowAllElements((showElements) => !showElements);
+    if (hasHeaderMenu) setShowHeaderMenu(!showAllElements);
+    if (hasMediaControlOverlay) setShowMediaControlOverlay(!showAllElements);
+    if (hasHeaderMenu || hasMediaControlOverlay)
+      setShowAllElements((showElements) => !showElements);
   }, [
     showAllElements,
     setShowAllElements,
+    hasHeaderMenu,
     setShowHeaderMenu,
+    hasMediaControlOverlay,
     setShowMediaControlOverlay,
   ]);
 

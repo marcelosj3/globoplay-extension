@@ -70,7 +70,7 @@ export const Home = () => {
 
       <GloboplayLogo className="logo" />
 
-      {!isGloboplayUrl ? (
+      {isGloboplayUrl ? (
         <ExtensionContent
           setShowHeaderMenu={setShowHeaderMenu}
           setIsVideoFullscreen={setIsVideoFullscreen}

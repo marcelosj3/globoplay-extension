@@ -46,6 +46,8 @@
   right: -24px;
   bottom: -24px;
   left: -24px;
+
+  z-index: 5;
 }
 
 .close-button:hover ~ .modal {
