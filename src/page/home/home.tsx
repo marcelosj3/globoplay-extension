@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { ReactComponent as GloboplayLogo } from "../../assets/logo/globoplay.svg";
+import { CloseButton } from "../../components/close-button/close-button";
 import { DOMMessage, DOMMessageResponse } from "../../types";
 import { AccessDenied } from "../access-denied/access-denied";
 import { ExtensionContent } from "../extension-content/extension-content";
+import "./home.style.css";
 
 export const Home = () => {
   const [isGloboplayUrl, setIsGloboplayUrl] = useState<boolean>(false);
@@ -53,7 +56,11 @@ export const Home = () => {
   }, [showAllElements, showHeaderMenu, showMediaControlOverlay]);
 
   return (
-    <div className="App">
+    <main className="home">
+      <CloseButton />
+
+      <GloboplayLogo className="logo" />
+
       {isGloboplayUrl ? (
         <ExtensionContent
           setIsGloboplayUrl={setIsGloboplayUrl}
@@ -68,6 +75,6 @@ export const Home = () => {
       ) : (
         <AccessDenied />
       )}
-    </div>
+    </main>
   );
 };

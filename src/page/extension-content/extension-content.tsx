@@ -1,7 +1,5 @@
 import React, { useCallback } from "react";
-import { ReactComponent as GloboplayLogo } from "../../assets/logo/globoplay.svg";
 import { Button } from "../../components/button/button";
-import { CloseButton } from "../../components/close-button/close-button";
 import { ToggleButton } from "../../components/toggle-button/toggle-button";
 import "./extension-content.style.css";
 
@@ -51,10 +49,6 @@ export const ExtensionContent = ({
 
   return (
     <section className="extension-content">
-      <CloseButton />
-
-      <GloboplayLogo className="logo" />
-
       <section className="toggle-buttons">
         <ToggleButton
           onChange={handleOnChangeHeaderMenu}

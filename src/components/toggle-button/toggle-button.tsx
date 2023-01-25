@@ -14,14 +14,21 @@ export const ToggleButton = ({
 
   return (
     <div className="toggle-button">
-      <input
-        type="checkbox"
-        id={labelId}
-        name={labelId}
-        onChange={onChange}
-        checked={checked}
-      />
-      <label htmlFor={labelId}>{children}</label>
+      <label htmlFor={labelId}>
+        <input
+          type="checkbox"
+          id={labelId}
+          name={labelId}
+          onChange={onChange}
+          checked={checked}
+        />
+        <div className="toggle-button-styled">
+          <div className="background">
+            <div className="circle" />
+          </div>
+        </div>
+        <p>{children}</p>
+      </label>
     </div>
   );
 };
