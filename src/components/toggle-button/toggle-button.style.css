@@ -1,0 +1,14 @@
+.toggle-button {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+
+  align-items: center;
+
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.toggle-button > label {
+  cursor: pointer;
+}

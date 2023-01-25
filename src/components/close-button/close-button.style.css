@@ -1,0 +1,53 @@
+.close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  height: 28px;
+  width: 28px;
+
+  border-radius: 0 0 0 16px;
+
+  top: -24px;
+  right: -24px;
+
+  font-weight: 700;
+  font-size: 16px;
+
+  background-color: var(--color-secondary-3);
+  color: var(--color-secondary);
+
+  transition: 0.3s;
+
+  z-index: 10;
+}
+
+.close-button:hover {
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+
+  top: -12px;
+  right: -12px;
+
+  font-size: 18px;
+
+  background: var(--color-gradient);
+  color: var(--color-white);
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  background-color: var(--color-secondary-4);
+  backdrop-filter: blur(4px);
+  top: -24px;
+  right: -24px;
+  bottom: -24px;
+  left: -24px;
+}
+
+.close-button:hover ~ .modal {
+  display: block;
+}

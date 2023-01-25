@@ -1,0 +1,21 @@
+.button {
+  background: var(--color-gradient);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  width: 100%;
+  padding: 16px;
+
+  border-radius: 16px;
+
+  transition: 0.3s;
+}
+
+.button:hover {
+  background: var(--color-secondary-3);
+  color: var(--color-secondary-1);
+}

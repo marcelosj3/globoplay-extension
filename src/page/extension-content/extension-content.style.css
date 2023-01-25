@@ -1,0 +1,17 @@
+.extension-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  position: relative;
+}
+
+.extension-content > .logo {
+  margin: 0 auto;
+}
+
+.extension-content > .toggle-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

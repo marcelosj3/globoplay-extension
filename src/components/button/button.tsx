@@ -1,11 +1,14 @@
 import { ButtonHTMLAttributes } from "react";
+import "./button.style.css";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const Button = ({ onClick, children }: ButtonProps) => {
   return (
     <>
-      <button onClick={onClick}>{children}</button>
+      <button className="button" onClick={onClick}>
+        {children}
+      </button>
     </>
   );
 };
