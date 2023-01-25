@@ -46,7 +46,7 @@ const messagesFromReactAppListener = (
   const response: DOMMessageResponse = {
     isGloboplayUrl,
     // eslint-disable-next-line no-restricted-globals
-    video: { isFullscreen: window.outerHeight === screen.height },
+    video: { isFullscreen: window.innerHeight === screen.height },
   };
 
   sendResponse(response);

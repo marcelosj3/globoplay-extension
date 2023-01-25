@@ -12,12 +12,6 @@ export const Home = () => {
   const [isVideoFullscreen, setIsVideoFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (
-      showHeaderMenu !== showAllElements &&
-      showMediaControlOverlay !== showAllElements
-    )
-      setShowAllElements((showElements) => !showElements);
-
     /**
      * We can't use "chrome.runtime.sendMessage" for sending messages from React.
      * For sending messages from React we need to specify which tab to send it to.
@@ -48,13 +42,15 @@ export const Home = () => {
           );
         }
       );
-  }, [
-    setIsGloboplayUrl,
-    showHeaderMenu,
-    showMediaControlOverlay,
-    showAllElements,
-    isVideoFullscreen,
-  ]);
+  }, [isVideoFullscreen, showHeaderMenu, showMediaControlOverlay]);
+
+  useEffect(() => {
+    if (
+      showHeaderMenu !== showAllElements &&
+      showMediaControlOverlay !== showAllElements
+    )
+      setShowAllElements((showElements) => !showElements);
+  }, [showAllElements, showHeaderMenu, showMediaControlOverlay]);
 
   return (
     <div className="App">
