@@ -4,14 +4,16 @@ import { ToggleButton } from "../../components/toggle-button/toggle-button";
 import "./extension-content.style.css";
 
 interface ExtensionContentProps {
-  setIsGloboplayUrl: React.Dispatch<React.SetStateAction<boolean>>;
   setShowHeaderMenu: React.Dispatch<React.SetStateAction<boolean>>;
   showHeaderMenu: boolean;
+  hasHeaderMenu: boolean;
   setShowMediaControlOverlay: React.Dispatch<React.SetStateAction<boolean>>;
   showMediaControlOverlay: boolean;
+  hasMediaControlOverlay: boolean;
   setShowAllElements: React.Dispatch<React.SetStateAction<boolean>>;
   showAllElements: boolean;
   setIsVideoFullscreen: React.Dispatch<React.SetStateAction<boolean>>;
+  hasVideo: boolean;
 }
 
 export const ExtensionContent = ({
@@ -22,6 +24,9 @@ export const ExtensionContent = ({
   setShowAllElements,
   showAllElements,
   setIsVideoFullscreen,
+  hasHeaderMenu,
+  hasMediaControlOverlay,
+  hasVideo,
 }: ExtensionContentProps) => {
   const handleOnChangeHeaderMenu = useCallback(() => {
     setShowHeaderMenu((showElement) => !showElement);
@@ -53,6 +58,7 @@ export const ExtensionContent = ({
         <ToggleButton
           onChange={handleOnChangeHeaderMenu}
           checked={showHeaderMenu}
+          disabled={!hasHeaderMenu}
         >
           Header
         </ToggleButton>
@@ -60,6 +66,7 @@ export const ExtensionContent = ({
         <ToggleButton
           onChange={handleOnChangeMediaControlOverlay}
           checked={showMediaControlOverlay}
+          disabled={!hasMediaControlOverlay}
         >
           Overlay
         </ToggleButton>
@@ -67,12 +74,15 @@ export const ExtensionContent = ({
         <ToggleButton
           onChange={handleOnChangeAllElements}
           checked={showAllElements}
+          disabled={!hasHeaderMenu && !hasMediaControlOverlay}
         >
           Toggle all elements
         </ToggleButton>
       </section>
 
-      <Button onClick={handleVideoFullscreen}>Fullscreen</Button>
+      <Button onClick={handleVideoFullscreen} disabled={!hasVideo}>
+        Fullscreen
+      </Button>
     </section>
   );
 };

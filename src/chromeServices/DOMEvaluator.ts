@@ -45,8 +45,13 @@ const messagesFromReactAppListener = (
   // Prepare the response object with information about the site
   const response: DOMMessageResponse = {
     isGloboplayUrl,
-    // eslint-disable-next-line no-restricted-globals
-    video: { isFullscreen: window.innerHeight === screen.height },
+    headerMenu: { hasElement: !!headerMenu },
+    mediaControlOverlay: { hasElement: !!mediaControlOverlay },
+    video: {
+      // eslint-disable-next-line no-restricted-globals
+      isFullscreen: window.innerHeight === screen.height,
+      hasElement: !!video,
+    },
   };
 
   sendResponse(response);

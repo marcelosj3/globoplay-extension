@@ -19,3 +19,10 @@
   background: var(--color-secondary-3);
   color: var(--color-secondary-1);
 }
+
+.button:disabled,
+.button:disabled:hover {
+  background: var(--color-secondary-2);
+  color: var(--color-secondary-3);
+  cursor: auto;
+}

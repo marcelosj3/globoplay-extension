@@ -59,6 +59,8 @@
   transition: 0.3s;
 }
 
+/* CHECKED */
+
 .toggle-button > label > input:checked ~ .toggle-button-styled {
   background-color: var(--color-white);
 }
@@ -74,4 +76,29 @@
   > .background
   > .circle {
   left: calc(100% - 26px - 2px);
+}
+
+/* DISABLED */
+
+.toggle-button > label > input:disabled ~ .toggle-button-styled {
+  background-color: var(--color-secondary-2);
+  cursor: auto;
+}
+
+.toggle-button > label > input:disabled ~ .toggle-button-styled > .background {
+  background: var(--color-secondary-2);
+}
+
+.toggle-button
+  > label
+  > input:disabled
+  ~ .toggle-button-styled
+  > .background
+  > .circle {
+  background-color: var(--color-secondary-3);
+}
+
+.toggle-button > label > input:disabled ~ p {
+  color: var(--color-secondary-2);
+  cursor: auto;
 }

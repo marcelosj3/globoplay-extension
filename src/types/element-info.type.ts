@@ -1,3 +1,4 @@
 export type ElementInfo = {
-  showElement: boolean | undefined;
+  showElement?: boolean | undefined;
+  hasElement?: boolean;
 };

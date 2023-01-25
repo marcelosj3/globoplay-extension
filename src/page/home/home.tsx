@@ -13,6 +13,10 @@ export const Home = () => {
     useState<boolean>(false);
   const [showAllElements, setShowAllElements] = useState<boolean>(false);
   const [isVideoFullscreen, setIsVideoFullscreen] = useState<boolean>(false);
+  const [hasHeaderMenu, setHasHeaderMenu] = useState<boolean>(false);
+  const [hasMediaControlOverlay, setHasMediaControlOverlay] =
+    useState<boolean>(false);
+  const [hasVideo, setHasVideo] = useState<boolean>(false);
 
   useEffect(() => {
     /**
@@ -41,6 +45,11 @@ export const Home = () => {
             (response: DOMMessageResponse) => {
               setIsGloboplayUrl(response.isGloboplayUrl);
               setIsVideoFullscreen(response.video.isFullscreen);
+              setHasHeaderMenu(!!response.headerMenu.hasElement);
+              setHasMediaControlOverlay(
+                !!response.mediaControlOverlay.hasElement
+              );
+              setHasVideo(!!response.video.hasElement);
             }
           );
         }
@@ -61,9 +70,8 @@ export const Home = () => {
 
       <GloboplayLogo className="logo" />
 
-      {isGloboplayUrl ? (
+      {!isGloboplayUrl ? (
         <ExtensionContent
-          setIsGloboplayUrl={setIsGloboplayUrl}
           setShowHeaderMenu={setShowHeaderMenu}
           setIsVideoFullscreen={setIsVideoFullscreen}
           setShowAllElements={setShowAllElements}
@@ -71,6 +79,9 @@ export const Home = () => {
           showAllElements={showAllElements}
           showHeaderMenu={showHeaderMenu}
           showMediaControlOverlay={showMediaControlOverlay}
+          hasHeaderMenu={hasHeaderMenu}
+          hasMediaControlOverlay={hasMediaControlOverlay}
+          hasVideo={hasVideo}
         />
       ) : (
         <AccessDenied />

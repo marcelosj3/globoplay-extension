@@ -1,6 +1,9 @@
+import { ElementInfo } from "./element-info.type";
 import { VideoInfo } from "./video-info.type";
 
 export type DOMMessageResponse = {
   isGloboplayUrl: boolean;
-  video: VideoInfo;
+  headerMenu: ElementInfo;
+  mediaControlOverlay: ElementInfo;
+  video: VideoInfo & ElementInfo;
 };

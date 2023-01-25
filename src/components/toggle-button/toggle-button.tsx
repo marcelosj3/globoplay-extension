@@ -9,6 +9,7 @@ export const ToggleButton = ({
   onChange,
   checked,
   children,
+  disabled,
 }: ToggleButtonProps) => {
   const labelId = children.toLowerCase().split(" ").join("-");
 
@@ -21,6 +22,7 @@ export const ToggleButton = ({
           name={labelId}
           onChange={onChange}
           checked={checked}
+          disabled={disabled}
         />
         <div className="toggle-button-styled">
           <div className="background">
