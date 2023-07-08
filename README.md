@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# Globoplay Extension
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Globoplay Extension is a Chrome extension designed to enhance the viewing experience on the Globoplay website. It helps disable annoying overlays that appear when hovering the mouse over the web player.
 
-## Available Scripts
+## Installation
+1. Clone the repository:
+   ```
+    git clone https://github.com/marcelosj3/globoplay-extension.git
+   ```
+2. Navigate to the project directory:
+   ```
+    cd globoplay-extension
+   ```
+3. Install the dependencies using Yarn:
+   ```
+    yarn install
+   ```
+## Usage
+1. Generate a zip file of the extension:
+   ```
+    yarn zip-build
+   ```
+2. Open Google Chrome and go to `chrome://extensions`.
 
-In the project directory, you can run:
+3. Enable the "Developer mode" toggle in the top-right corner.
 
-### `yarn start`
+4. Click on "Load unpacked" and select the `build` directory or the generated `build.zip` file from the project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- If you choose to load the `build` directory:
+  - Make sure to select the entire directory, not just its contents.
+  - Click "Select Folder" to load the extension.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- If you choose to load the `build.zip` file:
+  - Chrome will extract the contents of the zip file and load the extension.
 
-### `yarn test`
+5. The Globoplay Extension will be added to your Chrome browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. Visit the Globoplay website and start enjoying an enhanced viewing experience without the annoying overlays.
 
-### `yarn build`
+## Development
+If you want to contribute to the development of Globoplay Extension, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Fork the repository on GitHub.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Clone your forked repository:
+   ```
+    git clone https://github.com/your-username/globoplay-extension.git
+   ```
+3. Navigate to the project directory:
+   ```
+    cd globoplay-extension
+   ```
+4. Install the dependencies using Yarn:
+   ```
+    yarn install
+   ```
+5. Start the development server:
+   ```
+    yarn start
+   ```
+6. Make your changes and test them in your local environment.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+7. Commit your changes and push to your forked repository.
 
-### `yarn eject`
+8. Create a pull request on the original repository to propose your changes.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Deployment
+To deploy your Globoplay Extension to the Chrome Web Store, follow these steps:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Create a zip file of the build directory:
+   ```
+    yarn zip-build
+   ```
+2. Go to the [Chrome Developer Dashboard](https://chrome.google.com/webstore/developer/dashboard).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Create a new item and upload the zip file generated in the previous step.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Fill in the required details, such as the extension's name, description, screenshots, and promotional images.
 
-## Learn More
+5. Submit the extension for review.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+This project is licensed under the [MIT License](LICENSE).
