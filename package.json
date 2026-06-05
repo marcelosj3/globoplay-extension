@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "INLINE_RUNTIME_CHUNK=false craco build",
-    "test": "react-scripts test; node .github/setup.js",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "zip-build": "yarn build && zip -r build.zip build/"
   },
